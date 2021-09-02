@@ -1,0 +1,237 @@
+$white: hsl(0, 0%, 100%);
+$light-gray-cyan: hsl(185, 41%, 84%);
+$lighter-gray-cyan: hsl(189, 41%, 97%);
+$darker-gray-cyan: hsl(186, 14%, 43%);
+$dark-gray-cyan: hsl(184, 14%, 56%);
+$dark-cyan: hsl(183, 100%, 15%);
+$strong-cyan: hsl(172, 67%, 45%);
+$font: 'Space Mono', monospace;
+
+@mixin set-font {
+    font-family: $font;
+    font-weight: 700;
+}
+
+body {
+    margin: 0;
+    @include set-font;
+    background-color: $light-gray-cyan;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 90px;
+    margin: 40px 0;
+}  
+
+.container {
+    background-color: $white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 315px;
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    margin: 0;
+    color: $darker-gray-cyan;
+}
+
+.bill, .tip, .people {
+    margin-bottom: 25px;
+}
+
+input {
+    border: none;
+    background-color: $lighter-gray-cyan;
+    width: 295px;
+    border-radius: 5px;
+    color: $dark-cyan;
+    @include set-font;
+    font-size: 24px;
+    text-align: right;
+    padding: 5px 10px;
+}
+
+button {
+    &:hover {
+        cursor: pointer;
+    }
+    &:disabled {
+        opacity: 20%;
+        cursor: inherit;
+    }
+}
+
+@mixin input-icon {
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 20px;
+}
+
+.bill input {
+    margin-top: 5px;
+    background-image: url(./images/icon-dollar.svg);
+    @include input-icon;
+}
+
+.tip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 15px;
+    button {
+        background-color: $dark-cyan;
+        color: $white;
+        border-radius: 5px;
+        border: none;
+        width: 150px;
+        height: 50px;
+        @include set-font;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+}
+
+.people {
+    margin-top: 5px;
+}
+
+.people input {
+    background-image: url(./images/icon-person.svg);
+    @include input-icon;
+}
+
+#custom-tip {
+    width: 130px;
+    height: 40px;
+}
+
+.result {
+    border-radius: 15px;
+    background-color: $dark-cyan;
+    padding: 20px;
+    margin: 0 -10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    p {
+        color: $white;
+    }
+    .sub {
+        color: $dark-gray-cyan;
+        font-size: 13px;
+    }
+    button {
+        background-color: $strong-cyan;
+        color: $dark-cyan;
+        border: none;
+        border-radius: 5px;
+        @include set-font;
+        font-size: 20px;
+        width: 100%;
+        padding: 10px 0;
+        margin-top: 15px;
+    }
+}
+
+.result-outer {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.result-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.output-value {
+    color: $strong-cyan;
+    font-size: 30px;
+    line-height: 1em;
+}
+
+.attribution {
+    margin-top: 20px;
+    font-size: 10px; 
+    text-align: center;
+    a {
+        color: hsl(228, 45%, 44%);
+    }
+}
+
+.selected {
+    background-color: $strong-cyan !important;
+    color: $dark-cyan !important;
+}
+
+@media screen and (min-width: 1000px) {
+    .wrapper {
+        height: 100vh;
+        justify-self: center;
+        align-items: center;
+        .logo {
+            position: relative;
+            top: -100px;
+        }
+    }
+
+    .container {
+        flex-direction: row;
+        width: 900px;
+        justify-content: space-between;
+        align-items: center;
+        transform: translate(0, -75px);
+    }
+
+    .input {
+        width: 400px;
+        input {
+            width: 100%;
+        }
+        .tip {
+            button {
+                width: 125px;
+            }
+            #custom-tip {
+                width: 105px;
+            }
+        }
+    }
+
+    .output {
+        height: 100%;
+    }
+
+    .result {
+        width: 340px;
+        margin: 0;
+        height: 314px;
+        padding: 40px;
+        button {
+            margin-top: auto;
+        }
+        .output-value {
+            font-size: 50px;
+        }
+    }
+
+    .result-outer {
+        margin-bottom: 40px;
+    }
+
+    .attribution {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+}
